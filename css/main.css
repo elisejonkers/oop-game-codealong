@@ -18,6 +18,20 @@ body {
     position: absolute;
 }
 
+#score {
+    background-color: transparent;
+    color: black;
+    position: static;
+    width: 12vw;
+    height: 5vw;
+    border: dashed black;
+    border-top-width: 0px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 0px;
+  
+}
+
 #gameover {
     background-color: rgb(224, 184, 224);
     color: white

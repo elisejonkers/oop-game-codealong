@@ -1,7 +1,7 @@
 class Player {
     constructor() {
         // Position: player starts at bottom left corner
-        this.positionX = 50; // Exactly the middle --> 50 - (this.width / 2)
+        this.positionX = 40 // Exactly the middle --> 50 - (this.width / 2)
         this.positionY = 0;
         // Creating the size of the player
         this.height = 10;
@@ -27,7 +27,7 @@ class Player {
 
 class Obstacle {
     constructor() {
-        this.positionX = 50
+        this.positionX = 35 // middle --> 50 - (this.width /2)
         this.positionY = 100
         this.height = 10
         this.width = 30
@@ -64,7 +64,7 @@ const obstaclesArr = [] // will store instances of the class Obstacle
 setInterval(() => {
     const newObstacle = new Obstacle()
     obstaclesArr.push(newObstacle)
-}, 3000);
+}, 2000);
 
 // movies obstacles (every 3030 MS move all obstacles in the array)
 setInterval(() => {
@@ -84,6 +84,24 @@ setInterval(() => {
         }
     })
 }, 30);
+
+// [ ] display player really in the middle
+// [ ] avoid player moving to japan/alaska
+// [ ] create obstacles in random horizontal positions
+// [ ] remove when they go outside
+// [ ] count / display points
+
+// let count = 0
+// const scoreDiv = document.getElementById("score")
+// scoreDiv.innerHTML = `Score: ${count}`
+
+// obstaclesArr.forEach(function (element, i) {
+//     if (element[i].positionY === 0) {
+//         count++
+//         console.log(count)
+//         scoreDiv.innerHTML = `Score: ${count}`
+//     }
+// })
 
 document.addEventListener("keydown", (e) => {
     switch (e.code) {
