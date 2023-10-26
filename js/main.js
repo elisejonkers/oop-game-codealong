@@ -59,23 +59,31 @@ class Obstacle {
 const player = new Player()
 const obstaclesArr = [] // will store instances of the class Obstacle
 
-//setInterval(() => {
-//    ob1.moveDown()
-//}, 50);
 
 // create obstacles every 2 seconds
 setInterval(() => {
     const newObstacle = new Obstacle()
     obstaclesArr.push(newObstacle)
-}, 2000);
+}, 3000);
 
-// movies obstacles (every 50 MS move all obstacles in the array)
-
+// movies obstacles (every 3030 MS move all obstacles in the array)
 setInterval(() => {
     obstaclesArr.forEach((obstacleInstance) => {
+        // move
         obstacleInstance.moveDown()
+
+        //detect collision (we want to check this every 30MS, because then the obstacles are moving)
+        if (
+            player.positionX < obstacleInstance.positionX + obstacleInstance.width &&
+            player.positionX + player.width > obstacleInstance.positionX &&
+            player.positionY < obstacleInstance.positionY + obstacleInstance.height &&
+            player.positionY + player.height > obstacleInstance.positionY
+        ) {
+            console.log('game over')
+            location.href = "./gameover.html"
+        }
     })
-}, 50);
+}, 30);
 
 document.addEventListener("keydown", (e) => {
     switch (e.code) {

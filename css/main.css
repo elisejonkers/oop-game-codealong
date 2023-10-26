@@ -18,3 +18,8 @@ body {
     position: absolute;
 }
 
+#gameover {
+    background-color: rgb(224, 184, 224);
+    color: white
+}
+
