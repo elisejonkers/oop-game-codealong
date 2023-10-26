@@ -9,7 +9,12 @@ body {
 }
 
 #player {
-    background-color: lime;
+    background-color: rgb(93, 198, 93);
+    position: absolute;
+}
+
+.obstacle {
+    background-color: rgb(208, 140, 199);
     position: absolute;
 }
 
