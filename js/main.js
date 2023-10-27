@@ -1,65 +1,3 @@
-class Player {
-    constructor() {
-        // Position: player starts at bottom left corner
-        this.height = 10;
-        this.width = 20; /* We are going to store a number, because it's better to calculate with for the collision*/
-        
-        this.positionX = 50 - (this.width / 2)
-        this.positionY = 0;
-        // Creating the size of the player
-        
-
-        this.playerElm = document.getElementById("player")
-
-        this.playerElm.style.width = this.width + "vw" // viewport: responsive to the size of the screen
-        this.playerElm.style.height = this.height + "vh"
-
-        this.playerElm.style.bottom = this.positionY + "vh"
-        this.playerElm.style.left = this.positionX + "vw"
-    }
-    moveLeft() {
-        this.positionX--;
-        this.playerElm.style.left = this.positionX + 'vw'
-    }
-    moveRight() {
-        this.positionX++;
-        this.playerElm.style.left = this.positionX + 'vw' // left is kept here because of the positioning of the box
-    }
-}
-
-class Obstacle {
-    constructor() {
-        this.height = 10
-        this.width = 30
-        
-        this.positionX = 35 // middle --> 50 - (this.width /2)
-        this.positionY = 100
-        
-        this.obstacleElm = null //Already put it here, so we can keep track of information that relates to the class
-
-        this.createDomElement() // Every time there's a new Obstacle, it's going to invoke the createDomElement method (which creates a new obstacle)
-    }
-    createDomElement() {
-        //Everytime a new Obstacle is invoked, it needs to add a new div (element --> dynamic)
-        // step1: create the element
-        this.obstacleElm = document.createElement("div");
-
-        // step2: add content or modify (ex. innerHTML...)
-        this.obstacleElm.classList.add("obstacle")
-        this.obstacleElm.style.width = this.width + "vw"
-        this.obstacleElm.style.height = this.height + "vh"
-        this.obstacleElm.style.left = this.positionX + "vw"
-        this.obstacleElm.style.bottom = this.positionY + "vh"
-        // step3: append to the dom: `parentElm.appendChild()`
-        const parentElm = document.getElementById("board");
-        parentElm.appendChild(this.obstacleElm);
-    }
-    moveDown() {
-        this.positionY--
-        this.obstacleElm.style.bottom = this.positionY + "vh"
-    }
-}
-
 const player = new Player()
 const obstaclesArr = [] // will store instances of the class Obstacle
 
@@ -76,6 +14,14 @@ setInterval(() => {
         // move
         obstacleInstance.moveDown()
 
+        // //remove obstacle if outside
+        if (obstacleInstance.positionY < 0 - obstacleInstance.height) {
+            //remove DOM element
+            obstacleInstance.obstacleElm.remove()
+            //remove from array
+            obstaclesArr.shift()
+        }
+
         //detect collision (we want to check this every 30MS, because then the obstacles are moving)
         if (
             player.positionX < obstacleInstance.positionX + obstacleInstance.width &&
@@ -83,8 +29,8 @@ setInterval(() => {
             player.positionY < obstacleInstance.positionY + obstacleInstance.height &&
             player.positionY + player.height > obstacleInstance.positionY
         ) {
-            console.log('game over')
-            location.href = "./gameover.html"
+            //console.log('game over')
+            //location.href = "./gameover.html"
         }
     })
 }, 30);
