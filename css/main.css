@@ -8,7 +8,8 @@ body {
     position: relative;
     overflow: hidden;
     background-image: url("../images/background.jpg");
-
+    /* Always save the image on the computer, use the relative path --> ../ */
+    /* Image names: avoid spaces, make logic names */
 }
 
 #player {
