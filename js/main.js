@@ -1,11 +1,13 @@
 class Player {
     constructor() {
         // Position: player starts at bottom left corner
-        this.positionX = 40 // Exactly the middle --> 50 - (this.width / 2)
-        this.positionY = 0;
-        // Creating the size of the player
         this.height = 10;
         this.width = 20; /* We are going to store a number, because it's better to calculate with for the collision*/
+        
+        this.positionX = 50 - (this.width / 2)
+        this.positionY = 0;
+        // Creating the size of the player
+        
 
         this.playerElm = document.getElementById("player")
 
@@ -27,10 +29,12 @@ class Player {
 
 class Obstacle {
     constructor() {
-        this.positionX = 35 // middle --> 50 - (this.width /2)
-        this.positionY = 100
         this.height = 10
         this.width = 30
+        
+        this.positionX = 35 // middle --> 50 - (this.width /2)
+        this.positionY = 100
+        
         this.obstacleElm = null //Already put it here, so we can keep track of information that relates to the class
 
         this.createDomElement() // Every time there's a new Obstacle, it's going to invoke the createDomElement method (which creates a new obstacle)
@@ -96,7 +100,7 @@ setInterval(() => {
 // scoreDiv.innerHTML = `Score: ${count}`
 
 // obstaclesArr.forEach(function (element, i) {
-//     if (element[i].positionY === 0) {
+//     if (element[i].positionY <= 0) {
 //         count++
 //         console.log(count)
 //         scoreDiv.innerHTML = `Score: ${count}`
